@@ -168,3 +168,4 @@ cd $NETKIT_DIR/netkit-ng
 ./check_configuration.sh --fix
 
 show_outro
+exec "$BASH"

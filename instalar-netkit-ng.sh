@@ -44,6 +44,17 @@ cd $NETKIT_DIR/
 # validar que tengamos wget
 test -x /usr/bin/wget || como_root apt-get install wget
 
+# validar que la locale sea utf8, de no ser asi, gnome-terminal no levanta
+if [[ ! "$LANG" =~ UTF-8$ ]]; then
+    # forzar el establecimiento de locale
+    echo "ERROR: Su sistema debe utilizar un lenguaje con codificacion UTF-8"
+    como_root "locale-gen es_AR.UTF-8"
+    como_root "update-locale es_AR.UTF-8"
+    echo
+    echo "Los cambios necesarios han sido aplicados."
+    echo "Reinicie el sistema y luego continue con la instalación."
+fi
+
 # obtener los paquetes basicos
 echo "» Descargando netkit-ng desde el repositorio alternativo ..."
 test -d $NETKIT_DIR/bundles || mkdir $NETKIT_DIR/bundles

@@ -96,6 +96,18 @@ verificar_paquetes_requeridos () {
     fi
 }
 
+validar_ejecucion_32bits () {
+    if [ $(uname -m) == 'x86_64' ]; then
+        # si el sistema operativo es de 64 bits, instalar lo requerido para ejecutar 32 bits
+        if ! dpkg -s libc6-i386 &> /dev/null; then
+            echo
+            echo "» Instalando libreria para ejecucion de binarios de 32 bits ..."
+            como_root apt-get install libc6-i386
+            echo
+        fi
+    fi
+}
+
 descomprimir_todo () {
     echo "» Descomprimiendo el core de netkit, el sistema de archivos y el kernel ..."
     grep -qsF "version 3.0.4" $NETKIT_DIR/netkit-ng/netkit-version || \
@@ -161,6 +173,7 @@ descargar_netkit
 descargar_labs
 verificar_integridad_netkit
 verificar_paquetes_requeridos
+validar_ejecucion_32bits
 descomprimir_todo
 definir_variables_entorno
 

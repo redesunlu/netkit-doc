@@ -12,6 +12,16 @@ LABS_BASIC="netkit-lab_arp netkit-lab_quagga netkit-lab_rip"
 LABS_APPL="netkit-lab_webserver netkit-lab_dns netkit-lab_nat"
 PAQUETES_REQUERIDOS="bzip2 lsof uml-utilities xterm gnome-terminal wireshark tshark tcpdump"
 
+# validar que tengamos wget
+test -x /usr/bin/wget || como_root apt-get install wget
+
+# validar que wget tenga show-progress
+SHOW_PROGRESS=""
+if wget --help | grep -qF "show-progress"; then
+    SHOW_PROGRESS="--show-progress"
+fi
+
+
 como_root () {
     if grep -qF "ID=debian" /etc/os-release; then
         echo "Por favor ingrese la clave de root para continuar con la instalación."
@@ -52,13 +62,13 @@ descargar_netkit () {
     echo "» Descargando netkit-ng desde el repositorio alternativo ..."
     test -d $NETKIT_DIR/bundles || mkdir $NETKIT_DIR/bundles
     ls ../netkit-*.tar.bz2 &> /dev/null && mv ../netkit-*.tar.bz2 $NETKIT_DIR/bundles
-    if ! wget -q --show-progress -P bundles -c $NETKIT_REPO/$NETKIT_CORE; then
+    if ! wget -q $SHOW_PROGRESS -P bundles -c $NETKIT_REPO/$NETKIT_CORE; then
         echo "ERROR: No es posible descargar los archivos. Verifique la conectividad y el proxy definido."
         echo
         exit 1
     fi
-    wget -q --show-progress -P bundles -c $NETKIT_REPO/$NETKIT_FS
-    wget -q --show-progress -P bundles -c $NETKIT_REPO/$NETKIT_KERNEL
+    wget -q $SHOW_PROGRESS -P bundles -c $NETKIT_REPO/$NETKIT_FS
+    wget -q $SHOW_PROGRESS -P bundles -c $NETKIT_REPO/$NETKIT_KERNEL
     wget -q -P bundles -c $NETKIT_REPO/SHA256SUMS
 }
 
@@ -164,9 +174,6 @@ fi
 # crear el directorio principal
 test -d $NETKIT_DIR || mkdir $NETKIT_DIR
 cd $NETKIT_DIR/
-
-# validar que tengamos wget
-test -x /usr/bin/wget || como_root apt-get install wget
 
 validar_locale_utf8
 descargar_netkit

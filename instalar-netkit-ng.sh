@@ -10,6 +10,7 @@ NETKIT_KERNEL=netkit-ng-kernel-i386-K3.2-0.1.3-TYR.tar.bz2
 NETKIT_DIR=~/netkit
 LABS_BASIC="netkit-lab_arp netkit-lab_quagga netkit-lab_rip"
 LABS_APPL="netkit-lab_webserver netkit-lab_dns netkit-lab_nat"
+PAQUETES_REQUERIDOS="uml-utilities xterm gnome-terminal wireshark tshark tcpdump galculator"
 
 como_root () {
     if grep -qF "ID=debian" /etc/os-release; then
@@ -89,10 +90,12 @@ else
 fi
 cd $NETKIT_DIR/
 
-# instalar los comandos requeridos
-echo
-como_root apt-get install uml-utilities xterm gnome-terminal wireshark tshark tcpdump
-echo
+if ! dpkg -s $PAQUETES_REQUERIDOS &> /dev/null; then
+    echo
+    echo "» Instalando paquetes requeridos ..."
+    como_root apt-get install $PAQUETES_REQUERIDOS
+    echo
+fi
 
 echo "» Descomprimiendo el core de netkit, el sistema de archivos y el kernel ..."
 grep -qsF "version 3.0.4" $NETKIT_DIR/netkit-ng/netkit-version || \

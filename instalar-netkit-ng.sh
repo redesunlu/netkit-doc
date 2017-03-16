@@ -24,8 +24,8 @@ como_root () {
 
 echo "==================================================================="
 echo "   Esta secuencia de comandos instalará Netkit-NG en este equipo."
-echo "   La instalacion requiere al menos 1 GB de espacio disponible."
-echo "   Todos los archivos se almacenaran en el directorio $NETKIT_DIR"
+echo "   La instalación requiere al menos 1 GB de espacio disponible."
+echo "   Todos los archivos se almacenarán en el directorio $NETKIT_DIR"
 echo
 echo "   Verifique la documentación disponible en"
 echo "      http://www.labredes.unlu.edu.ar/"
@@ -33,7 +33,7 @@ echo "==================================================================="
 echo
 
 if [[ $EUID -eq 0 ]]; then
-    echo "ERROR: Este script debe ejecutarse como usuario comun."
+    echo "ERROR: Este script debe ejecutarse como usuario común."
     echo
     exit 1
 fi
@@ -72,18 +72,18 @@ wget -q -P bundles -c $NETKIT_REPO/SHA256SUMS
 # obtener algunos laboratorios
 test -d $NETKIT_DIR/labs || mkdir $NETKIT_DIR/labs
 for LAB in $LABS_BASIC; do
-  wget -q --show-progress -P labs -c $NETKIT_LABS/netkit-labs_basic-topics/$LAB/$LAB.tar.gz
+  wget -q -P labs -c $NETKIT_LABS/netkit-labs_basic-topics/$LAB/$LAB.tar.gz
 done
 for LAB in $LABS_APPL; do
-  wget -q --show-progress -P labs -c $NETKIT_LABS/netkit-labs_application-level/$LAB/$LAB.tar.gz
+  wget -q -P labs -c $NETKIT_LABS/netkit-labs_application-level/$LAB/$LAB.tar.gz
 done
 
+echo
 echo -n "» Verificando la integridad de los paquetes ... "
 cd $NETKIT_DIR/bundles
 if sha256sum --quiet -c SHA256SUMS; then
     echo "OK"
 else
-    echo
     echo "ERROR: Alguno de los paquetes esta corrupto. Por favor descarguelo(s) nuevamente."
     echo
     exit 1
@@ -105,6 +105,7 @@ grep -qsF "filesystem version F7.0" $NETKIT_DIR/netkit-ng/fs/netkit-filesystem-v
 grep -qsF "kernel version 3.2" $NETKIT_DIR/netkit-ng/kernel/netkit-kernel-version || \
     tar xSf bundles/$NETKIT_KERNEL --checkpoint=.2000
 
+echo
 echo "» Descomprimiendo los laboratorios ..."
 for LAB in $LABS_BASIC $LABS_APPL; do
     tar xSf labs/$LAB.tar.gz

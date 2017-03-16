@@ -10,7 +10,7 @@ NETKIT_KERNEL=netkit-ng-kernel-i386-K3.2-0.1.3-TYR.tar.bz2
 NETKIT_DIR=~/netkit
 LABS_BASIC="netkit-lab_arp netkit-lab_quagga netkit-lab_rip"
 LABS_APPL="netkit-lab_webserver netkit-lab_dns netkit-lab_nat"
-PAQUETES_REQUERIDOS="uml-utilities xterm gnome-terminal wireshark tshark tcpdump galculator"
+PAQUETES_REQUERIDOS="uml-utilities xterm gnome-terminal wireshark tshark tcpdump"
 
 como_root () {
     if grep -qF "ID=debian" /etc/os-release; then
@@ -25,9 +25,9 @@ como_root () {
 echo "==================================================================="
 echo "   Esta secuencia de comandos instalará Netkit-NG en este equipo."
 echo "   La instalacion requiere al menos 1 GB de espacio disponible."
-echo "   Todos los archivos se almacenaran en el directorio" `realpath $NETKIT_DIR`
+echo "   Todos los archivos se almacenaran en el directorio $NETKIT_DIR"
 echo
-echo "   Verifique la documentacion disponible en"
+echo "   Verifique la documentación disponible en"
 echo "      http://www.labredes.unlu.edu.ar/"
 echo "==================================================================="
 echo
@@ -126,16 +126,14 @@ export MANPATH=:$NETKIT_HOME/man
 export PATH=$PATH:$NETKIT_HOME/bin
 # source $NETKIT_HOME/bin/netkit_bash_completion
 
-cd netkit-ng
+cd $NETKIT_DIR/netkit-ng
 ./check_configuration.sh --fix
 
 echo
-echo "» Instalacion finalizada."
+echo "» Instalación finalizada."
 echo "  Pruebe iniciar un laboratorio con"
 echo
 echo "    cd"
-echo "    cd netkit/netkit-lab_webserver"
+echo "    cd $NETKIT_DIR/netkit-lab_webserver"
 echo "    lstart"
 echo
-
-cd -

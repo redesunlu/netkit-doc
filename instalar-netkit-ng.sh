@@ -116,8 +116,8 @@ definir_variables_entorno () {
     # agregar las lineas relevantes a bashrc
     grep -qF NETKIT_HOME ~/.bashrc || echo "export NETKIT_HOME=$NETKIT_DIR/netkit-ng" >> ~/.bashrc
     grep -qF MANPATH ~/.bashrc || echo "export MANPATH=:\$NETKIT_HOME/man" >> ~/.bashrc
-    grep -qF $NETKIT_HOME/bin ~/.bashrc || echo "export PATH=\$PATH:\$NETKIT_HOME/bin" >> ~/.bashrc
-    grep -qF netkit_bash_completion ~/.bashrc || echo ". \$NETKIT_HOME/bin/netkit_bash_completion" >> ~/.bashrc
+    grep -qF NETKIT_HOME/bin ~/.bashrc || echo "export PATH=\$PATH:\$NETKIT_HOME/bin" >> ~/.bashrc
+    # grep -qF netkit_bash_completion ~/.bashrc || echo "source \$NETKIT_HOME/bin/netkit_bash_completion" >> ~/.bashrc
 
     # TODO: recargar .bashrc para tomar los valores definidos
     # source ~/.bashrc

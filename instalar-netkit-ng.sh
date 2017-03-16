@@ -48,12 +48,12 @@ test -x /usr/bin/wget || como_root apt-get install wget
 # validar que la locale sea utf8, de no ser asi, gnome-terminal no levanta
 if [[ ! "$LANG" =~ UTF-8$ ]]; then
     # forzar el establecimiento de locale
-    echo "ERROR: Su sistema debe utilizar un lenguaje con codificacion UTF-8"
-    como_root "locale-gen es_AR.UTF-8"
-    como_root "update-locale es_AR.UTF-8"
+    echo "ERROR: Su sistema debe utilizar un lenguaje con codificación UTF-8"
+    como_root "(sed -i -e 's/# es_AR.UTF-8 UTF-8/es_AR.UTF-8 UTF-8/' /etc/locale.gen) && (dpkg-reconfigure --frontend=noninteractive locales) && update-locale LANG=es_AR.UTF-8"
     echo
     echo "Los cambios necesarios han sido aplicados."
-    echo "Reinicie el sistema y luego continue con la instalación."
+    echo "Reinicie el sistema y luego vuelva a ejecutar esta instalación."
+    exit 1
 fi
 
 # obtener los paquetes basicos

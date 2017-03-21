@@ -27,7 +27,7 @@ cd netkit-doc/
 O descargando el script en cuestión
 
 ```
-wget [https://raw.githubusercontent.com/redesunlu/netkit-doc/master/instalar-netkit-ng.sh](https://raw.githubusercontent.com/redesunlu/netkit-doc/master/instalar-netkit-ng.sh)
+wget https://raw.githubusercontent.com/redesunlu/netkit-doc/master/instalar-netkit-ng.sh
 ```
 
 ## Ejecutar el instalador

@@ -1,6 +1,6 @@
 # Prácticas de Redes
 
-Este repositorio contiene scripts, documentación y tips para utilizar [Netkit](http://wiki.netkit.org/index.php/Main_Page) en prácticas de Laboratorio de [TyR](http://www.labredes.unlu.edu.ar/tyr).
+Este repositorio contiene scripts, documentación y tips para utilizar [Netkit](http://wiki.netkit.org/index.php/Main_Page) en prácticas de Laboratorio de la cátedra de [Teleinformática y Redes](http://www.labredes.unlu.edu.ar/tyr), Universidad Nacional de Luján, Argentina.
 
 # Contenido
 
@@ -11,9 +11,9 @@ Este repositorio cuenta con el siguiente contenido:
  * Script de instalación automática de Netkit en un entorno Debian o derivado.
  * Desinstalación
 
-# Como usar este repositorio
+# Cómo usar este repositorio
 
-El principal uso de este repo esta en el script que automatiza la instalación de Netkit en un SO Debian.
+El principal uso de este repo está en el script que automatiza la instalación de Netkit en un SO Debian.
 
 ## Descargar el instalador
 
@@ -27,12 +27,12 @@ cd netkit-doc/
 O descargando el script en cuestión
 
 ```
-wget https://raw.githubusercontent.com/redesunlu/netkit-doc/master/instalar-netkit-ng.sh
+wget [https://raw.githubusercontent.com/redesunlu/netkit-doc/master/instalar-netkit-ng.sh](https://raw.githubusercontent.com/redesunlu/netkit-doc/master/instalar-netkit-ng.sh)
 ```
 
 ## Ejecutar el instalador
 
-El script realiza todas las acciones necesarias para instalar Netkit de forma completa. Incluso agregar paquetes que no estén instalados. Puede tardar bastante en descargar, requiere al menos 1Gb de espacio, y solicita ejecutar algunas acciones como superusuario.
+El script realiza todas las acciones necesarias para instalar Netkit de forma completa. Incluso agregar paquetes que no estén instalados. Puede tardar bastante en descargar, requiere al menos 1GB de espacio, y solicita ejecutar algunas acciones como superusuario.
 
 ```
 bash instalar-netkit-ng.sh
@@ -42,9 +42,9 @@ Leer toda la salida del comando que va mostrando información de estado, y los p
 
 ## Reinstalar
 
-Si fuera necesario comenzar la instalación de nuevo, el script puede ejecutarse sin tener que descargar nuevamente los archivos mas "pesados".
+Si fuera necesario comenzar la instalación de nuevo, el script puede ejecutarse sin tener que descargar nuevamente los archivos más "pesados".
 
-Solo hace falta eliminar todas los directorios de '~/netkit/' salvo el llamado 'bundles'.
+Sólo hace falta eliminar todas los directorios de '~/netkit/' salvo el llamado 'bundles'.
 
 ```
 rm -rf ~/netkit/labs ~/netkit/netkit*

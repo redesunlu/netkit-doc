@@ -43,3 +43,69 @@ Varias cosas pueden haber fallado. Lo mas probable es que no hayas visto las con
  * Si sós valiente y querés aprender un poco mas, revisa [esta página](http://wiki.netkit.org/index.php/FAQ) con problemas y soluciones de Netkit. En particular, las preguntas dentro de ***Troubleshooting*** pueden ayudar un poco.
  * Si la linea de comando no es lo tuyo, hace lo siguiente: ejecuta el siguiente comando `lstart -v`. La salida de ese comando pegala en un archivo de texto y llama a alguno de los docentes. Si no estas en la clase, adjunta el archivo a un correo contándonos todo el detalle que te parezca relevante.
 
+# Entonces ya esta instalado Netkit. ¿Como se usa?
+
+La instalación de netkit agrega 2 grupos de comandos:
+
+ * comandos con prefijo ***v***
+ * comandos con prefijo ***l***
+
+Los comandos de prefijos ***v*** sirven para administrar VMs simples.
+
+Los que utilizan prefijos ***l*** sirven para administrar Laboratorios.
+
+# ¿Que es un laboratorio?
+
+Un laboratorio involucra normalmente varias VMs, y los comandos permiten gestionar grupos de VMs de forma cómoda.
+
+Un laboratorio conecta todas las VMs con alguna topología lógica en función del objetivo del mismo.
+
+# ¿Que comandos de tipo ***v*** hay? ¿Para que se usan?
+
+ * `vstart mivm`: Inicia una VM de nombre **mivm**.
+ * `vlist`: Lista las VMs que se estan ejecutando actualmente.
+ * `vhalt mivm`: Apaga la VM **mivm**.
+
+# ¿Que laboratorios de Netkit estan instalados?
+
+Cuando se instaló Netkit, se instalaron diversos laboratorios:
+
+```
+$ ls -l ~/netkit/
+total 36
+drwxrwxr-x  2 tomas tomas 4096 mar 21 18:29 bundles
+drwxrwxr-x  2 tomas tomas 4096 mar 21 18:17 labs
+drwxr-xr-x  8 tomas tomas 4096 ago 22  2016 netkit-lab_arp
+drwxr-xr-x 10 tomas tomas 4096 ago 22  2016 netkit-lab_dns
+drwxr-xr-x  7 tomas tomas 4096 ago 22  2016 netkit-lab_nat
+drwxr-xr-x  5 tomas tomas 4096 ago 22  2016 netkit-lab_quagga
+drwxr-xr-x  8 tomas tomas 4096 ago 22  2016 netkit-lab_rip
+drwxr-xr-x  4 tomas tomas 4096 mar 22 16:19 netkit-lab_webserver
+drwxr-xr-x  7 tomas tomas 4096 mar 22 16:19 netkit-ng
+```
+
+Todas los directorios que empiezan con `netkit-lab_` son laboratorios listos para ser utilizados. Cuando terminó la instalación, el instalador sugirió el uso de un laboratorio, y con un comando se iniciaron 2 VMs de forma automática.
+
+Un laboratorio puede iniciar muchas VMs, siendo limitado por los recursos de Hardware del equipo que ejecuta Netkit.
+
+# ¿Como se inicia un laboratorio de Netkit?
+
+Cuando en un TP o en clase se indique que se inicie un laboratorio, los pasos a seguir son los siguientes:
+
+ * Dirigirse al directorio particular. Por ejemplo, para el laboratorio de ***ARP***, dirigirse a `~/netkit/netkit-lab_arp`
+
+ `$ cd ~/netkit/netkit-lab_arp`
+
+ * Iniciar el laboratorio con el comando `lstart`.
+
+ `$ lstart`
+
+ * Ver las VMs iniciadas
+
+ `$ vlist`
+
+ * Finalizar el laboratorio
+
+ `$ lhalt`
+
+# ¿Como realizar una captura cuando un?

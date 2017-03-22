@@ -1,6 +1,6 @@
 # Prácticas de Redes
 
-Este repositorio contiene scripts, documentación y tips para utilizar [Netkit](http://wiki.netkit.org/index.php/Main_Page) en prácticas de Laboratorio de la cátedra de [Teleinformática y Redes](http://www.labredes.unlu.edu.ar/tyr), Universidad Nacional de Luján, Argentina.
+Este repositorio contiene scripts, documentación y tips para utilizar [Netkit](http://wiki.netkit.org/index.php/Main_Page) en prácticas de Laboratorio de la asignatura de [Teleinformática y Redes](http://www.labredes.unlu.edu.ar/tyr), Universidad Nacional de Luján, Argentina.
 
 # Contenido
 

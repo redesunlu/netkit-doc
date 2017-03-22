@@ -8,8 +8,10 @@ NETKIT_CORE=netkit-ng-core-32-3.0.4-TYR.tar.bz2
 NETKIT_FS=netkit-ng-filesystem-i386-F7.0-0.1.3-TYR.tar.bz2
 NETKIT_KERNEL=netkit-ng-kernel-i386-K3.2-0.1.3-TYR.tar.bz2
 NETKIT_DIR=~/netkit
+LABS_GITHUB_REPO=https://github.com/redesunlu/netkit-labs
+LABS_GITHUB="netkit-lab_dns-TYR"
 LABS_BASIC="netkit-lab_arp netkit-lab_quagga netkit-lab_rip"
-LABS_APPL="netkit-lab_webserver netkit-lab_dns netkit-lab_nat"
+LABS_APPL="netkit-lab_webserver netkit-lab_nat"
 PAQUETES_REQUERIDOS="bzip2 lsof uml-utilities xterm gnome-terminal wireshark tshark tcpdump"
 
 # validar que tengamos wget
@@ -75,11 +77,21 @@ descargar_netkit () {
 descargar_labs () {
     # obtener algunos laboratorios
     test -d $NETKIT_DIR/labs || mkdir $NETKIT_DIR/labs
-    for LAB in $LABS_BASIC; do
-    wget -q -P labs -c $NETKIT_LABS/netkit-labs_basic-topics/$LAB/$LAB.tar.gz
+    # obtener algunos laboratorios creados para la materia
+    for LAB in $LABS_GITHUB; do
+        if ! wget -q -c $LABS_GITHUB_REPO/blob/master/tarballs/$LAB.tar.gz?raw=true -O $NETKIT_DIR/labs/$LAB.tar.gz; then
+            echo "ERROR: No es posible descargar los archivos. Verifique la conectividad y el proxy definido."
+            echo
+            exit 1
+        fi
     done
+    # obtener algunos laboratorios del paquete basico de netkit
+    for LAB in $LABS_BASIC; do
+        wget -q -P labs -c $NETKIT_LABS/netkit-labs_basic-topics/$LAB/$LAB.tar.gz
+    done
+    # obtener algunos laboratorios de aplicacion de netkit
     for LAB in $LABS_APPL; do
-    wget -q -P labs -c $NETKIT_LABS/netkit-labs_application-level/$LAB/$LAB.tar.gz
+        wget -q -P labs -c $NETKIT_LABS/netkit-labs_application-level/$LAB/$LAB.tar.gz
     done
 }
 
@@ -128,7 +140,7 @@ descomprimir_todo () {
         tar xSf bundles/$NETKIT_KERNEL --checkpoint=.2000
     echo
     echo "» Descomprimiendo los laboratorios ..."
-    for LAB in $LABS_BASIC $LABS_APPL; do
+    for LAB in $LABS_GITHUB $LABS_BASIC $LABS_APPL; do
         tar xSf labs/$LAB.tar.gz
     done
     echo

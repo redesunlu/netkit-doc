@@ -39,7 +39,7 @@ show_intro () {
     echo "   Todos los archivos se almacenarán en el directorio $NETKIT_DIR"
     echo
     echo "   Verifique la documentación disponible en"
-    echo "      http://www.labredes.unlu.edu.ar/"
+    echo "      https://github.com/redesunlu/netkit-doc"
     echo "==================================================================="
     echo
 }

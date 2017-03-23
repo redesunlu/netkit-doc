@@ -2,11 +2,11 @@
 
 Este manual tiene por objetivo ser una guía para el uso de Netkit.
 
-# ¿Que es Netkit?
+# ¿Qué es Netkit?
 
 Netkit es una herramienta. Netkit permite crear maquinas virtuales. Estas VMs emulan un entorno de red sobre el cual se pueden realizar experimentos. Es posible capturar PDUs de diferentes protocolos de comunicación para analizarlos posteriormente.
 
-# ¿Como se instala?
+# ¿Cómo se instala?
 
 Si bien existe una [pagina oficial del proyecto](http://wiki.netkit.org/index.php/Download_Official), la asignatura ofrece un [script](https://github.com/redesunlu/netkit-doc) que realiza todos los pasos de instalación. Para el uso en esta asignatura, **recomendamos** el uso del mismo.
 
@@ -40,33 +40,29 @@ Varias cosas pueden haber fallado. Lo mas probable es que no hayas visto las con
 
 2 caminos a tomar:
 
- * Si sós valiente y querés aprender un poco mas, revisa [esta página](http://wiki.netkit.org/index.php/FAQ) con problemas y soluciones de Netkit. En particular, las preguntas dentro de ***Troubleshooting*** pueden ayudar un poco.
- * Si la linea de comando no es lo tuyo, hace lo siguiente: ejecuta el siguiente comando `lstart -v`. La salida de ese comando pegala en un archivo de texto y llama a alguno de los docentes. Si no estas en la clase, adjunta el archivo a un correo contándonos todo el detalle que te parezca relevante.
+ * Si sos valiente y querés aprender un poco más, revisá [esta página](http://wiki.netkit.org/index.php/FAQ) con problemas y soluciones de Netkit. En particular, las preguntas dentro de ***Troubleshooting*** pueden ayudar un poco.
+ * Si la línea de comandos no es lo tuyo, hacé lo siguiente: ejecutá el comando `lstart -v`. La salida de ese comando pegala en un archivo de texto y llamá a alguno de los docentes. Si no estas en la clase, adjuntá el archivo a un correo contándonos todo el detalle que te parezca relevante.
 
-# Entonces ya esta instalado Netkit. ¿Como se usa?
+# Entonces ya esta instalado Netkit. ¿Cómo se usa?
 
 La instalación de netkit agrega 2 grupos de comandos:
 
- * comandos con prefijo ***v***
- * comandos con prefijo ***l***
+ * comandos con prefijo ***v***, que sirven para administrar VMs simples.
+ * comandos con prefijo ***l***, que sirven para administrar Laboratorios.
 
-Los comandos de prefijos ***v*** sirven para administrar VMs simples.
-
-Los que utilizan prefijos ***l*** sirven para administrar Laboratorios.
-
-# ¿Que es un laboratorio?
+# ¿Qué es un laboratorio?
 
 Un laboratorio involucra normalmente varias VMs, y los comandos permiten gestionar grupos de VMs de forma cómoda.
 
 Un laboratorio conecta todas las VMs con alguna topología lógica en función del objetivo del mismo.
 
-# ¿Que comandos de tipo ***v*** hay? ¿Para que se usan?
+# ¿Qué comandos de tipo ***v*** hay? ¿Para qué se usan?
 
  * `vstart mivm`: Inicia una VM de nombre **mivm**.
- * `vlist`: Lista las VMs que se estan ejecutando actualmente.
+ * `vlist`: Lista las VMs que se están ejecutando actualmente.
  * `vhalt mivm`: Apaga la VM **mivm**.
 
-# ¿Que laboratorios de Netkit estan instalados?
+# ¿Qué laboratorios de Netkit están instalados?
 
 Cuando se instaló Netkit, se instalaron diversos laboratorios:
 
@@ -88,7 +84,7 @@ Todas los directorios que empiezan con `netkit-lab_` son laboratorios listos par
 
 Un laboratorio puede iniciar muchas VMs, siendo limitado por los recursos de Hardware del equipo que ejecuta Netkit.
 
-# ¿Como se inicia un laboratorio de Netkit?
+# ¿Cómo se inicia un laboratorio de Netkit?
 
 Cuando en un TP o en clase se indique que se inicie un laboratorio, los pasos a seguir son los siguientes:
 
@@ -108,16 +104,16 @@ Cuando en un TP o en clase se indique que se inicie un laboratorio, los pasos a 
 
  `$ lhalt`
 
-# ¿Como realizar una captura de un laboratorio?
+# ¿Cómo realizar una captura de un laboratorio?
 
 Existen diversas maneras de hacer esto:
 
  * Las VMs cuentan con tshark instalado, entonces siempre se puede capturar desde alguna de las mismas.
- * Netkit ofrece una forma de capturar el trafico de un laboratorio en ejecución. Pero para entender esto necesitamos primero ver algunos detalles mas.
+ * Netkit ofrece una forma de capturar el tráfico de un laboratorio en ejecución. Pero para entender esto necesitamos primero ver algunos detalles mas.
 
 ## Salida del comando vlist
 
-Correr el laboratorio de arp y ejecutar vlist:
+Correr el laboratorio de arp y ejecutar `vlist`:
 
 ```
 $ cd ~/netkit/netkit-lab_arp
@@ -125,7 +121,7 @@ $ lstart
 $ vlist
 ```
 
-La salida se vera como la siguiente:
+La salida se verá como la siguiente:
 
 ```
 $ vlist
@@ -144,11 +140,11 @@ En esta salida nos interesa la ultima columna (**INTERFACES**).
 
 Se ven placas y redes a las que estas placas estan conectadas. Por ejemplo:
 
-eth0 @ A dice que la placa eth0 esta conectada a la red A.
+_eth0 @ A_ dice que la placa _eth0_ esta conectada a la red _A_.
 
 A, B y C son las redes disponibles.
 
-## Ya entendí, hay 3 redes y 5 dispositivos ¿Como capturo el trafico de alguna de las redes?
+## Ya entendí, hay 3 redes y 5 dispositivos ¿Cómo capturo el trafico de alguna de las redes?
 
 Se captura con el comando `vdump` y se redirige la salida a un archivo. Con el ejemplo anterior:
 
@@ -158,25 +154,25 @@ Running ==> uml_dump C
 
 ```
 
-Se captura todo el trafico que hay por la red C (pc2, pc3 y r2), y se almacena en el archivo captura.pcap.
+Se captura todo el tráfico que hay por la red C (pc2, pc3 y r2), y se almacena en el archivo captura.pcap.
 
-## ¿Como se detiene la captura?
+## ¿Cómo se detiene la captura?
 
 Cuando ya no necesites capturar mas, simplemente en la consola de ejecución de la captura presiona `Ctrl+C`.
 
-## ¿Como mirar la captura realizada?
+## ¿Cómo puedo analizar la captura realizada?
 
-La captura se genero con formato pcap. Se puede visualizar sin problemas con herramientas como tshark o wireshark.
+La captura se generó con formato _pcap_. Se puede visualizar sin problemas con herramientas como `tshark` o `wireshark`.
 
-## ¿Como se cierra el laboratorio?
+## ¿Cómo se cierra el laboratorio?
 
-En nuestra experiencia, cerrar las consolas una a una puede ser problematico. Aconsejamos utilizar el comando `lhalt` en la misma consola donde se lanzó el `lstart`.
+En nuestra experiencia, cerrar las consolas una a una puede ser problemático. Aconsejamos utilizar el comando `lhalt` en la misma consola donde se lanzó el `lstart`.
 
 Tener cuidado de estar en el directorio del laboratorio.
 
 # TL;DR
 
-Si ya leiste todo lo anterior, entonces aca dejamos una referencia rapida a todos los comandos explicados:
+Si ya leíste todo lo anterior, entonces acá dejamos una referencia rápida a todos los comandos explicados:
 
 Para manejo de VMs:
 
@@ -200,6 +196,6 @@ Para capturar:
 
 ```
 # Tienen que haber un labo corriendo
-$ vdump <nombre-red>
+$ vdump <nombre-red> > archivo_de_captura.pcap
 # Averiguar nombres de red con comando vlist
 ```

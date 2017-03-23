@@ -108,4 +108,98 @@ Cuando en un TP o en clase se indique que se inicie un laboratorio, los pasos a 
 
  `$ lhalt`
 
-# ¿Como realizar una captura cuando un?
+# ¿Como realizar una captura de un laboratorio?
+
+Existen diversas maneras de hacer esto:
+
+ * Las VMs cuentan con tshark instalado, entonces siempre se puede capturar desde alguna de las mismas.
+ * Netkit ofrece una forma de capturar el trafico de un laboratorio en ejecución. Pero para entender esto necesitamos primero ver algunos detalles mas.
+
+## Salida del comando vlist
+
+Correr el laboratorio de arp y ejecutar vlist:
+
+```
+$ cd ~/netkit/netkit-lab_arp
+$ lstart
+$ vlist
+```
+
+La salida se vera como la siguiente:
+
+```
+$ vlist
+USER             VHOST               PID       SIZE  INTERFACES
+tomas            pc1               16039      40620  eth0 @ A
+tomas            pc2               17936      40620  eth0 @ C
+tomas            pc3               19626      40620  eth0 @ C
+tomas            r1                21467      40620  eth0 @ A, eth1 @ B
+tomas            r2                23155      40620  eth0 @ C, eth1 @ B
+
+Total virtual machines:       5    (you),        5    (all users).
+Total consumed memory:   203100 KB (you),   203100 KB (all users).
+```
+
+En esta salida nos interesa la ultima columna (**INTERFACES**).
+
+Se ven placas y redes a las que estas placas estan conectadas. Por ejemplo:
+
+eth0 @ A dice que la placa eth0 esta conectada a la red A.
+
+A, B y C son las redes disponibles.
+
+## Ya entendí, hay 3 redes y 5 dispositivos ¿Como capturo el trafico de alguna de las redes?
+
+Se captura con el comando `vdump` y se redirige la salida a un archivo. Con el ejemplo anterior:
+
+```
+$ vdump C > captura.pcap
+Running ==> uml_dump C
+
+```
+
+Se captura todo el trafico que hay por la red C (pc2, pc3 y r2), y se almacena en el archivo captura.pcap.
+
+## ¿Como se detiene la captura?
+
+Cuando ya no necesites capturar mas, simplemente en la consola de ejecución de la captura presiona `Ctrl+C`.
+
+## ¿Como mirar la captura realizada?
+
+La captura se genero con formato pcap. Se puede visualizar sin problemas con herramientas como tshark o wireshark.
+
+## ¿Como se cierra el laboratorio?
+
+En nuestra experiencia, cerrar las consolas una a una puede ser problematico. Aconsejamos utilizar el comando `lhalt` en la misma consola donde se lanzó el `lstart`.
+
+Tener cuidado de estar en el directorio del laboratorio.
+
+# TL;DR
+
+Si ya leiste todo lo anterior, entonces aca dejamos una referencia rapida a todos los comandos explicados:
+
+Para manejo de VMs:
+
+```
+$ vstart nombre-vm # inicia un vm de nombre nombre-vm
+$ vlist # informacion util de las vm en ejecución
+$ vhalt nombre-vm # apaga la vm nombre-vm
+```
+
+Para manejo de labos:
+
+```
+# Ir a la carpeta de un Laboratorio
+# Si instalaste con nuestro instalador, estan en ~/netkit/netkit-lab_<tema>
+#   donde <tema> puede ser: dns, arp, webserver,....
+$ lstart # inicia todas las vms de un labo
+$ lhalt # cierra todas las vms
+```
+
+Para capturar:
+
+```
+# Tienen que haber un labo corriendo
+$ vdump <nombre-red>
+# Averiguar nombres de red con comando vlist
+```

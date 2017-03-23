@@ -2,14 +2,15 @@
 
 set -e
 
-NETKIT_REPO=http://www.marcelofernandez.info/files
+NETKIT_REPO=http://www.unlu.edu.ar/~tyr/netkit
 NETKIT_LABS=http://wiki.netkit.org/netkit-labs
 NETKIT_CORE=netkit-ng-core-32-3.0.4-TYR.tar.bz2
 NETKIT_FS=netkit-ng-filesystem-i386-F7.0-0.1.3-TYR.tar.bz2
 NETKIT_KERNEL=netkit-ng-kernel-i386-K3.2-0.1.3-TYR.tar.bz2
 NETKIT_DIR=~/netkit
 LABS_GITHUB_REPO=https://github.com/redesunlu/netkit-labs
-LABS_GITHUB="netkit-lab_dns-TYR"
+LABS_GITHUB=""
+LABS_UNLU="netkit-lab_dns-TYR"
 LABS_BASIC="netkit-lab_arp netkit-lab_quagga netkit-lab_rip"
 LABS_APPL="netkit-lab_webserver netkit-lab_nat"
 PAQUETES_REQUERIDOS="bzip2 ca-certificates lsof uml-utilities xterm gnome-terminal wireshark tshark tcpdump"
@@ -77,13 +78,17 @@ descargar_netkit () {
 descargar_labs () {
     # obtener algunos laboratorios
     test -d $NETKIT_DIR/labs || mkdir $NETKIT_DIR/labs
-    # obtener algunos laboratorios creados para la materia
+    # obtener algunos laboratorios creados para la materia (aquellos alojados en GITHUB)
     for LAB in $LABS_GITHUB; do
         if ! wget -q -c $LABS_GITHUB_REPO/blob/master/tarballs/$LAB.tar.gz?raw=true -O $NETKIT_DIR/labs/$LAB.tar.gz; then
             echo "ERROR: No es posible descargar los archivos. Verifique la conectividad y el proxy definido."
             echo
             exit 1
         fi
+    done
+    # obtener algunos laboratorios creados para la materia (aquellos alojados en la UNLU)
+    for LAB in $LABS_UNLU; do
+        wget -q -P labs -c $NETKIT_REPO/$LAB.tar.gz
     done
     # obtener algunos laboratorios del paquete basico de netkit
     for LAB in $LABS_BASIC; do
@@ -140,7 +145,7 @@ descomprimir_todo () {
         tar xSf bundles/$NETKIT_KERNEL --checkpoint=.2000
     echo
     echo "» Descomprimiendo los laboratorios ..."
-    for LAB in $LABS_GITHUB $LABS_BASIC $LABS_APPL; do
+    for LAB in $LABS_GITHUB $LABS_UNLU $LABS_BASIC $LABS_APPL; do
         tar xSf labs/$LAB.tar.gz
     done
     echo

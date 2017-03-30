@@ -17,7 +17,7 @@ Este inconveniente se resuelve fácilmente, definiendo que se utilice la
 terminal Xterm en vez de Gnome-Terminal.
 
 Para ello, edite el archivo `~/netkit/netkit-ng/netkit.conf` y reemplace la 
-línea `TERM_TYPE=gnome` (aprox. linea 40) por `TERM_TYPE=gnome`. Luego detenga
+línea `TERM_TYPE=gnome` (aprox. linea 40) por `TERM_TYPE=xterm`. Luego detenga
 y vuelva a iniciar el laboratorio o las máquinas virtuales que requiera.
 
 

@@ -104,7 +104,7 @@ verificar_integridad_netkit () {
     echo
     echo -n "» Verificando la integridad de los paquetes ... "
     cd $NETKIT_DIR/bundles
-    if LANG=C sha256sum -c SHA256SUMS 2> /dev/null | grep FAILED; then
+    if LANG=C sha256sum -c SHA256SUMS 2> /dev/null | grep "FAILED$"; then
         echo "ERROR: Alguno de los paquetes esta corrupto. Por favor descarguelo(s) nuevamente."
         echo
         exit 1

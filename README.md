@@ -6,8 +6,9 @@ Este repositorio contiene scripts, documentación y tips para utilizar [Netkit](
 
 Este repositorio cuenta con el siguiente contenido:
 
- * Instalación y reinstalación
- * Manual de uso de Netkit
+ * [Instalación y reinstalación](#descargar-el-instalador)
+ * [Manual de uso de Netkit](manual-de-uso.md)
+ * [FAQ](preguntas-frecuentes.md)
  * Script de instalación automática de Netkit en un entorno Debian o derivado.
  * Desinstalación
 

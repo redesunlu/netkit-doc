@@ -72,7 +72,7 @@ descargar_netkit () {
     fi
     wget -q $SHOW_PROGRESS -P bundles -c $NETKIT_REPO/$NETKIT_FS
     wget -q $SHOW_PROGRESS -P bundles -c $NETKIT_REPO/$NETKIT_KERNEL
-    wget -q -P bundles -c $NETKIT_REPO/SHA256SUMS
+    wget -q -P bundles -N $NETKIT_REPO/SHA256SUMS
 }
 
 descargar_labs () {

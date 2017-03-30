@@ -5,12 +5,12 @@ set -e
 NETKIT_REPO=http://www.unlu.edu.ar/~tyr/netkit
 NETKIT_LABS=http://wiki.netkit.org/netkit-labs
 NETKIT_CORE=netkit-ng-core-32-3.0.4-TYR.tar.bz2
-NETKIT_FS=netkit-ng-filesystem-i386-F7.0-0.1.3-TYR.tar.bz2
-NETKIT_KERNEL=netkit-ng-kernel-i386-K3.2-0.1.3-TYR.tar.bz2
+NETKIT_FS=netkit-ng-filesystem-i386-F7.0-0.1.4-TYR.tar.bz2
+NETKIT_KERNEL=netkit-ng-kernel-i386-K3.2-0.1.4-TYR.tar.bz2
 NETKIT_DIR=~/netkit
 LABS_GITHUB_REPO=https://github.com/redesunlu/netkit-labs
 LABS_GITHUB=""
-LABS_UNLU="netkit-lab_dns-TYR"
+LABS_UNLU="netkit-lab_dns-TYR netkit-lab_email-TYR"
 LABS_BASIC="netkit-lab_arp netkit-lab_quagga netkit-lab_rip"
 LABS_APPL="netkit-lab_webserver netkit-lab_nat"
 PAQUETES_REQUERIDOS="bzip2 ca-certificates lsof uml-utilities xterm gnome-terminal wireshark tshark tcpdump"

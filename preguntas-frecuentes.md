@@ -71,6 +71,13 @@ Basta con agregar las líneas que se desean ejecutar al final del archivo
 correspondiente a la máquina virtual que nos interesa para que los comandos
 se ejecuten luego de iniciada la VM.
 
+### ¿Es posible acceder desde una máquina virtual a los archivos del host? ¿Cómo?
+
+Sí, es posible. Netkit automáticamente genera el directorio `/hosthome` dentro de la máquina virtual, apuntando al home 
+del usuario que lanzó el proceso (con vstart o lstart).
+
+En el caso de que se haya iniciado un laboratorio (con lstart), también está disponible dentro de 
+la máquina virtual el directorio `/hostlab` para acceder al contenido del laboratorio en el host.
 
 ### ¿Puedo realizar una captura de tráfico dentro de una máquina virtual?
 
@@ -81,12 +88,15 @@ parámetros adecuados. Por ejemplo:
 
     # para capturar todo el tráfico en un archivo
     tcpdump -i eth0 -w captura.pcap
+
+    # para capturar todo el tráfico en un archivo y guardarlo directamente en el directorio del laboratorio en el host
+    tcpdump -i eth0 -w /hostlab/captura.pcap
     
     # para mostrar sólo el tráfico de dns y smtp en pantalla
     tcpdump -i eth0 -t -q port domain or port smtp
 
-_TODO: explicar cómo pasar el archivo de captura al host_
-
+    # para guardar sólo el tráfico de dns directamente en el host, dentro del home del usuario
+    tcpdump -i eth0 -t -q port domain -w /hosthome/captura_dns.cap
 
 ### ¿Es posible ejecutar una máquina virtual sin iniciar una nueva ventana de terminal?
 
@@ -103,3 +113,5 @@ la misma terminal. Asegúrese, por supuesto, de no ejecutarlo sobre el host!
 ---
 
 Mauro A. Meloni \<maurom at dominio de la unlu\>
+Tomas Delvechio \<tdelvechio at dominio de la unlu\>
+Marcelo Fernandez \<fernandezm at dominio de la unlu\>

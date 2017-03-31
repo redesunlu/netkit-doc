@@ -112,7 +112,9 @@ la misma terminal. Asegúrese, por supuesto, de no ejecutarlo sobre el host!
 
 ---
 
-Mauro A. Meloni \<maurom at dominio de la unlu\> 
-Tomas Delvechio \<tdelvechio at dominio de la unlu\> 
-Marcelo Fernandez \<fernandezm at dominio de la unlu\> 
+Mauro A. Meloni \<maurom at dominio de la unlu\>
+
+Tomas Delvechio \<tdelvechio at dominio de la unlu\>
+
+Marcelo Fernandez \<fernandezm at dominio de la unlu\>
 

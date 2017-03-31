@@ -89,7 +89,7 @@ parámetros adecuados. Por ejemplo:
     # para capturar todo el tráfico en un archivo
     tcpdump -i eth0 -w captura.pcap
 
-    # para capturar todo el tráfico en un archivo y guardarlo directamente en el directorio del laboratorio en el host
+    # para capturar todo el tráfico en un archivo y guardarlo directamente en el directorio del lab en el host
     tcpdump -i eth0 -w /hostlab/captura.pcap
     
     # para mostrar sólo el tráfico de dns y smtp en pantalla

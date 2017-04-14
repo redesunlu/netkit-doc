@@ -49,7 +49,7 @@ show_intro () {
 
 validar_locale_utf8 () {
     # validar que la locale sea utf8, de no ser asi, gnome-terminal no levanta
-    if [[ ! "$LANG" =~ UTF-8$ ]]; then
+    if [[ ! "$LANG" =~ (utf|UTF)-?8$ ]]; then
         # forzar el establecimiento de locale
         echo "ERROR: Su sistema debe utilizar un lenguaje con codificación UTF-8"
         como_root "(sed -i -e 's/# es_AR.UTF-8 UTF-8/es_AR.UTF-8 UTF-8/' /etc/locale.gen) && (dpkg-reconfigure --frontend=noninteractive locales) && update-locale LANG=es_AR.UTF-8"

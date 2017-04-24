@@ -35,6 +35,35 @@ Este inconveniente se resuelve eliminando los discos virtuales con el comando
 manual sobre el sistema operativo de la máquina virtual.
 
 
+### Al iniciar un laboratorio, sólo se inicia una máquina virtual, en la que aparece el mensaje siguiente durante varios minutos. ¿A qué se debe?
+
+    INIT: version 2.88 booting
+    [info] Using makefile-style concurrent boot in runlevel S.
+
+Si se cumplen **todas** las siguientes condiciones:
+
+- El sistema operativo donde ejecuta Netkit-NG es un sistema virtualizado,
+- Está utilizando el software VirtualBox para ello, y
+- Su computadora posee un procesador **sin soporte** para instrucciones de
+  virtualización por hardware.
+
+Entonces encontrará que, debido a las dificultades de emulación de las
+instrucciones utilizadas por Netkit, la performance del sistema Netkit-NG es
+sumamente baja y lo hace prácticamente inutilizable. Para resolver esta
+situación:
+
+- Averigüe si su equipo soporta instrucciones de virtualización asistidas
+  por hardware, y si éste es el caso caso, actívelas. Usualmente esto se
+  realiza mediante una opción en el BIOS.
+- Si su equipo **no soporta** instrucciones de virtualización asistidas por
+  hardware, le recomendamos que instale una distribución GNU/Linux tal como
+  Ubuntu o Debian en modo Dual-Boot y ejecute Netkit-NG en dicha instalación.
+- Como alternativa, pruebe instalar el sistema operativo en otro motor de
+  virtualización diferente a VirtualBox.
+
+Para averiguar si su equipo soporta este tipo de instrucciones, siga los pasos
+indicados en [este enlace](https://blogs.technet.microsoft.com/davidcervigon/2007/04/26/soporta-mi-procesador-la-virtualizacin-asistida-por-hardware/).
+
 ### Cerré la ventana de una máquina virtual y ahora no puedo volver a iniciar el laboratorio. ¿Cómo puedo resolverlo?
 
 Habitualmente, dado que un laboratorio involucra múltiples ventanas,

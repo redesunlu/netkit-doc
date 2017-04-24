@@ -38,7 +38,7 @@ como_root () {
 show_intro () {
     echo "==================================================================="
     echo "   Esta secuencia de comandos instalará Netkit-NG en este equipo."
-    echo "   La instalación requiere al menos 1 GB de espacio disponible."
+    echo "   La instalación requiere al menos 2 GB de espacio disponible."
     echo "   Todos los archivos se almacenarán en el directorio $NETKIT_DIR"
     echo
     echo "   Verifique la documentación disponible en"

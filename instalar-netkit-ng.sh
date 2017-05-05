@@ -202,7 +202,9 @@ fi
 test -d $NETKIT_DIR || mkdir $NETKIT_DIR
 cd $NETKIT_DIR/
 
-verify_locale_utf8
+if [[ "$LANG" =~ ^es_AR ]]; then
+    verify_locale_utf8
+fi
 download_netkit
 download_labs
 verify_netkit_integrity

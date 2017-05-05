@@ -114,6 +114,16 @@ verify_netkit_integrity () {
     cd $NETKIT_DIR/
 }
 
+verify_updated_repositories () {
+    # make sure repository indexes are no more than a month old
+    if [[ -z "$(find /var/lib/apt/lists -mtime -30 -print -quit)" ]]; then
+        echo
+        echo "» Actualizando la lista de paquetes ..."
+        run_as_root apt-get update
+        echo
+    fi
+}
+
 verify_required_packages () {
     if ! dpkg -s $REQUIRED_PACKAGES &> /dev/null; then
         echo
@@ -196,6 +206,7 @@ verify_locale_utf8
 download_netkit
 download_labs
 verify_netkit_integrity
+verify_updated_repositories
 verify_required_packages
 validate_32bits_execution
 uncompress_everything

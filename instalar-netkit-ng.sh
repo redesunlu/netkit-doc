@@ -13,22 +13,23 @@ LABS_GITHUB=""
 LABS_UNLU="netkit-lab_dns-TYR netkit-lab_email-TYR netkit-lab_proxy-TYR"
 LABS_BASIC="netkit-lab_arp netkit-lab_quagga netkit-lab_rip"
 LABS_APPL="netkit-lab_webserver netkit-lab_nat"
-PAQUETES_REQUERIDOS="bzip2 ca-certificates lsof uml-utilities xterm gnome-terminal wireshark tshark tcpdump"
+REQUIRED_PACKAGES="bzip2 ca-certificates lsof uml-utilities xterm gnome-terminal wireshark tshark tcpdump"
 
-# validar que tengamos wget
-test -x /usr/bin/wget || como_root apt-get install wget
+# verify if we have wget
+test -x /usr/bin/wget || run_as_root apt-get install wget
 
-# validar que wget tenga show-progress
+# verify that wget supports show-progress
 SHOW_PROGRESS=""
 if wget --help | grep -qF "show-progress"; then
     SHOW_PROGRESS="--show-progress"
 fi
 
 
-como_root () {
+run_as_root () {
+    # run command as root with su or sudo
     if grep -qF "ID=debian" /etc/os-release; then
         echo "Por favor ingrese la clave de root para continuar con la instalación."
-	su root -m -c "$*" root
+        su root -m -c "$*" root
     else
         echo "Por favor ingrese su clave para continuar con la instalación."
         sudo $*
@@ -47,12 +48,12 @@ show_intro () {
     echo
 }
 
-validar_locale_utf8 () {
-    # validar que la locale sea utf8, de no ser asi, gnome-terminal no levanta
+verify_locale_utf8 () {
+    # verify that the locale is utf8, or gnome-terminal won't work
     if [[ ! "$LANG" =~ (utf|UTF)-?8$ ]]; then
-        # forzar el establecimiento de locale
+        # force locale es_AR.UTF-8
         echo "ERROR: Su sistema debe utilizar un lenguaje con codificación UTF-8"
-        como_root "(sed -i -e 's/# es_AR.UTF-8 UTF-8/es_AR.UTF-8 UTF-8/' /etc/locale.gen) && (dpkg-reconfigure --frontend=noninteractive locales) && update-locale LANG=es_AR.UTF-8"
+        run_as_root "(sed -i -e 's/# es_AR.UTF-8 UTF-8/es_AR.UTF-8 UTF-8/' /etc/locale.gen) && (dpkg-reconfigure --frontend=noninteractive locales) && update-locale LANG=es_AR.UTF-8"
         echo
         echo "Los cambios necesarios han sido aplicados."
         echo "Reinicie el sistema y luego vuelva a ejecutar esta instalación."
@@ -60,8 +61,8 @@ validar_locale_utf8 () {
     fi
 }
 
-descargar_netkit () {
-    # obtener los paquetes basicos
+download_netkit () {
+    # fetch basic netkit-ng packages
     echo "» Descargando netkit-ng desde el repositorio alternativo ..."
     test -d $NETKIT_DIR/bundles || mkdir $NETKIT_DIR/bundles
     ls ../netkit-*.tar.bz2 &> /dev/null && mv ../netkit-*.tar.bz2 $NETKIT_DIR/bundles
@@ -75,10 +76,9 @@ descargar_netkit () {
     wget -q -P bundles -N $NETKIT_REPO/SHA256SUMS
 }
 
-descargar_labs () {
-    # obtener algunos laboratorios
+download_labs () {
     test -d $NETKIT_DIR/labs || mkdir $NETKIT_DIR/labs
-    # obtener algunos laboratorios creados para la materia (aquellos alojados en GITHUB)
+    # fetch labs built for the course (stored on GITHUB)
     for LAB in $LABS_GITHUB; do
         if ! wget -q -c $LABS_GITHUB_REPO/blob/master/tarballs/$LAB.tar.gz?raw=true -O $NETKIT_DIR/labs/$LAB.tar.gz; then
             echo "ERROR: No es posible descargar los archivos. Verifique la conectividad y el proxy definido."
@@ -86,21 +86,21 @@ descargar_labs () {
             exit 1
         fi
     done
-    # obtener algunos laboratorios creados para la materia (aquellos alojados en la UNLU)
+    # fetch labs built for the course (stored on UNLU website)
     for LAB in $LABS_UNLU; do
         wget -q -P labs -c $NETKIT_REPO/$LAB.tar.gz
     done
-    # obtener algunos laboratorios del paquete basico de netkit
+    # fetch labs from the netkit basic-topics package
     for LAB in $LABS_BASIC; do
         wget -q -P labs -c $NETKIT_LABS/netkit-labs_basic-topics/$LAB/$LAB.tar.gz
     done
-    # obtener algunos laboratorios de aplicacion de netkit
+    # fetch labs from the netkit application-level package
     for LAB in $LABS_APPL; do
         wget -q -P labs -c $NETKIT_LABS/netkit-labs_application-level/$LAB/$LAB.tar.gz
     done
 }
 
-verificar_integridad_netkit () {
+verify_netkit_integrity () {
     echo
     echo -n "» Verificando la integridad de los paquetes ... "
     cd $NETKIT_DIR/bundles
@@ -114,28 +114,28 @@ verificar_integridad_netkit () {
     cd $NETKIT_DIR/
 }
 
-verificar_paquetes_requeridos () {
-    if ! dpkg -s $PAQUETES_REQUERIDOS &> /dev/null; then
+verify_required_packages () {
+    if ! dpkg -s $REQUIRED_PACKAGES &> /dev/null; then
         echo
         echo "» Instalando paquetes requeridos ..."
-        como_root apt-get install $PAQUETES_REQUERIDOS
+        run_as_root apt-get install $REQUIRED_PACKAGES
         echo
     fi
 }
 
-validar_ejecucion_32bits () {
+validate_32bits_execution () {
     if [ $(uname -m) == 'x86_64' ]; then
-        # si el sistema operativo es de 64 bits, instalar lo requerido para ejecutar 32 bits
+        # if OS is 64 bits, install required packages to execute 32 bits binaries
         if ! dpkg -s libc6-i386 &> /dev/null; then
             echo
             echo "» Instalando libreria para ejecucion de binarios de 32 bits ..."
-            como_root apt-get install libc6-i386
+            run_as_root apt-get install libc6-i386
             echo
         fi
     fi
 }
 
-descomprimir_todo () {
+uncompress_everything () {
     echo "» Descomprimiendo el core de netkit, el sistema de archivos y el kernel ..."
     grep -qsF "version 3.0.4" $NETKIT_DIR/netkit-ng/netkit-version || \
         tar xSf bundles/$NETKIT_CORE --checkpoint=.2000
@@ -151,14 +151,14 @@ descomprimir_todo () {
     echo
 }
 
-definir_variables_entorno () {
-    # agregar las lineas relevantes a bashrc
+define_environment_vars () {
+    # add relevant lines to bashrc
     grep -qF NETKIT_HOME ~/.bashrc || echo "export NETKIT_HOME=$NETKIT_DIR/netkit-ng" >> ~/.bashrc
     grep -qF MANPATH ~/.bashrc || echo "export MANPATH=:\$NETKIT_HOME/man" >> ~/.bashrc
     grep -qF NETKIT_HOME/bin ~/.bashrc || echo "export PATH=\$PATH:\$NETKIT_HOME/bin" >> ~/.bashrc
     # grep -qF netkit_bash_completion ~/.bashrc || echo "source \$NETKIT_HOME/bin/netkit_bash_completion" >> ~/.bashrc
 
-    # TODO: recargar .bashrc para tomar los valores definidos
+    # TODO: reload .bashrc to apply recently defined values
     # source ~/.bashrc
 
     export NETKIT_HOME=$NETKIT_DIR/netkit-ng
@@ -188,18 +188,18 @@ if [[ $EUID -eq 0 ]]; then
     exit 1
 fi
 
-# crear el directorio principal
+# create main netkit directory
 test -d $NETKIT_DIR || mkdir $NETKIT_DIR
 cd $NETKIT_DIR/
 
-validar_locale_utf8
-descargar_netkit
-descargar_labs
-verificar_integridad_netkit
-verificar_paquetes_requeridos
-validar_ejecucion_32bits
-descomprimir_todo
-definir_variables_entorno
+verify_locale_utf8
+download_netkit
+download_labs
+verify_netkit_integrity
+verify_required_packages
+validate_32bits_execution
+uncompress_everything
+define_environment_vars
 
 cd $NETKIT_DIR/netkit-ng
 ./check_configuration.sh --fix

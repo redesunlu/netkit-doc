@@ -8,10 +8,10 @@ NETKIT_CORE=netkit-ng-core-32-3.0.4-TYR.tar.bz2
 NETKIT_FS=netkit-ng-filesystem-i386-F7.0-0.1.4-TYR.tar.bz2
 NETKIT_KERNEL=netkit-ng-kernel-i386-K3.2-0.1.4-TYR.tar.bz2
 NETKIT_DIR=~/netkit
-LABS_GITHUB_REPO=https://github.com/redesunlu/netkit-labs
-LABS_GITHUB=""
+LABS_GITHUB_REPO=https://raw.githubusercontent.com/redesunlu/netkit-labs
+LABS_GITHUB="netkit-lab_quagga-TYR"
 LABS_UNLU="netkit-lab_dns-TYR netkit-lab_email-TYR netkit-lab_proxy-TYR"
-LABS_BASIC="netkit-lab_arp netkit-lab_quagga netkit-lab_rip"
+LABS_BASIC="netkit-lab_arp netkit-lab_rip"
 LABS_APPL="netkit-lab_webserver netkit-lab_nat"
 REQUIRED_PACKAGES="bzip2 ca-certificates lsof uml-utilities xterm gnome-terminal wireshark tshark tcpdump"
 
@@ -80,7 +80,7 @@ download_labs () {
     test -d $NETKIT_DIR/labs || mkdir $NETKIT_DIR/labs
     # fetch labs built for the course (stored on GITHUB)
     for LAB in $LABS_GITHUB; do
-        if ! wget -q -c $LABS_GITHUB_REPO/blob/master/tarballs/$LAB.tar.gz?raw=true -O $NETKIT_DIR/labs/$LAB.tar.gz; then
+        if ! wget -q -c $LABS_GITHUB_REPO/master/tarballs/$LAB.tar.gz?raw=true -O $NETKIT_DIR/labs/$LAB.tar.gz; then
             echo "ERROR: No es posible descargar los archivos. Verifique la conectividad y el proxy definido."
             echo
             exit 1

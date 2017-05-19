@@ -9,9 +9,9 @@ NETKIT_FS=netkit-ng-filesystem-i386-F7.0-0.1.4-TYR.tar.bz2
 NETKIT_KERNEL=netkit-ng-kernel-i386-K3.2-0.1.4-TYR.tar.bz2
 NETKIT_DIR=~/netkit
 LABS_GITHUB_REPO=https://raw.githubusercontent.com/redesunlu/netkit-labs
-LABS_GITHUB="netkit-lab_quagga-TYR"
+LABS_GITHUB="netkit-lab_quagga-TYR netkit-lab_rip-TYR"
 LABS_UNLU="netkit-lab_dns-TYR netkit-lab_email-TYR netkit-lab_proxy-TYR"
-LABS_BASIC="netkit-lab_arp netkit-lab_rip"
+LABS_BASIC="netkit-lab_arp"
 LABS_APPL="netkit-lab_webserver netkit-lab_nat"
 REQUIRED_PACKAGES="bzip2 ca-certificates lsof uml-utilities xterm gnome-terminal wireshark tshark tcpdump"
 

@@ -161,6 +161,15 @@ uncompress_everything () {
     echo
 }
 
+fix_netkit_terminal () {
+    # netkit and gnome-terminal do not get along well, so
+    # we'll stay away from gnome-terminal at the moment
+    sed -i 's/TERM_TYPE=gnome/TERM_TYPE=xterm/' $NETKIT_DIR/netkit-ng/netkit.conf
+    # set larger xterm font (look up fixed fonts with xlsfonts)
+    # prefer anti-aliased monospaced font and darker color
+    sed -i 's/KERNELCMD="xterm -e /KERNELCMD="xterm -fa Monospace -fs 10 -fg gray -e /' $NETKIT_DIR/netkit-ng/bin/vstart
+}
+
 define_environment_vars () {
     # add relevant lines to bashrc
     grep -qF NETKIT_HOME ~/.bashrc || echo "export NETKIT_HOME=$NETKIT_DIR/netkit-ng" >> ~/.bashrc
@@ -212,6 +221,7 @@ verify_updated_repositories
 verify_required_packages
 validate_32bits_execution
 uncompress_everything
+fix_netkit_terminal
 define_environment_vars
 
 cd $NETKIT_DIR/netkit-ng

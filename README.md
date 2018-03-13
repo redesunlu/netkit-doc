@@ -33,7 +33,7 @@ wget https://raw.githubusercontent.com/redesunlu/netkit-doc/master/instalar-netk
 
 ## Ejecutar el instalador
 
-El script realiza todas las acciones necesarias para instalar Netkit de forma completa. Incluso agregar paquetes que no estén instalados. Puede tardar bastante en descargar, requiere al menos 1GB de espacio, y solicita ejecutar algunas acciones como superusuario.
+El script realiza todas las acciones necesarias para instalar Netkit de forma completa. Incluso agregar paquetes que no estén instalados. Puede tardar bastante en descargar, requiere al menos 2 GB de espacio, y solicita ejecutar algunas acciones como superusuario.
 
 ```
 bash instalar-netkit-ng.sh

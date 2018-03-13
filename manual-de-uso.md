@@ -2,6 +2,8 @@
 
 Este manual tiene por objetivo ser una guía para el uso de Netkit.
 
+This document is also available in [English](user-guide.en.md).
+
 # ¿Qué es Netkit?
 
 Netkit es una herramienta. Netkit permite crear maquinas virtuales. Estas VMs emulan un entorno de red sobre el cual se pueden realizar experimentos. Es posible capturar PDUs de diferentes protocolos de comunicación para analizarlos posteriormente.

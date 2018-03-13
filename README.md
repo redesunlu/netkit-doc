@@ -2,6 +2,8 @@
 
 Este repositorio contiene scripts, documentación y tips para utilizar [Netkit](http://wiki.netkit.org/index.php/Main_Page) en prácticas de Laboratorio de la asignatura de [Teleinformática y Redes](http://www.labredes.unlu.edu.ar/tyr), Universidad Nacional de Luján, Argentina.
 
+This document is also available in [English](README.en.md).
+
 # Contenido
 
 Este repositorio cuenta con el siguiente contenido:

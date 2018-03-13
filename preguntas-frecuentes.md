@@ -1,5 +1,6 @@
 # Preguntas (no tan frecuentes) de Netkit-NG
 
+This document is also available in [English](faq.en.md).
 
 ### Al iniciar una máquina virtual, la misma no tiene conectividad. De hecho, ni siquiera tiene interfaz eth0. ¿Qué puede estar sucediendo?
 

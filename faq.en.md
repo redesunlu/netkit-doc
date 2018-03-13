@@ -95,6 +95,6 @@ To stop the virtual machine, run the `poweroff` command inside the same terminal
 
 Content by
 
-* Mauro A. Meloni \<maurom at the domain of the unlu\>
-* Tomas Delvechio \<tdelvechio at the domain of the unlu\>
-* Marcelo Fernandez \<fernandezm at the domain of the unlu\>
+* Mauro A. Meloni \<maurom at unlu mail server\>
+* Tomas Delvechio \<tdelvechio at unlu mail server\>
+* Marcelo Fernandez \<fernandezm at unlu mail server\>

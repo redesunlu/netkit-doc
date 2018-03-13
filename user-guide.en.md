@@ -28,7 +28,7 @@ Run a test by performing these steps. That should start 2 terminals as seen in t
 
 Terminals have names, which we will refer later in the explanations. In this lab, one terminal is called ***client*** and the other ***server***.
 
-## The test ran OK, but I couldn't understand what I did
+## The test ran OK, but I didn't understand what I did
 
 You set up a Netkit lab. For now, in the "original" terminal (where you copypasted `lstart`), now copy, paste and run the `lhalt` command. The 2 terminals should close (both ***client*** and ***server***).
 

@@ -1,4 +1,4 @@
-# (Not so Frequently Asked) Questions of Netkit-NG
+# (Not so Frequently Asked) Questions about Netkit-NG
 
 Este documento también está disponible en [Español](preguntas-frecuentes.md).
 
@@ -13,15 +13,15 @@ If the output of the command is the one indicated here, then you're being bitten
 
 This problem can be easily solved by instructing Netkit to use Xterm instead of Gnome-Terminal. To do so, open the `~/netkit/netkit-ng/netkit.conf` file with a text editor and replace the line `TERM_TYPE=gnome` (around line 40) with `TERM_TYPE=xterm`. Then stop and restart the lab and/or virtual machines affected.
 
-### When starting a virtual machine, I see several errors like the next, and I am unable to write commands in the terminal. What may be happening?
+### When starting a virtual machine, I see several errors like the following, and I am unable to write commands at the terminal. What may be happening?
 
      mtime mismatch (1314283784 vs 1314285563) of COW header vs backing file
 
-This error shows up when the filesystem shared between all the virtual machines has changed or has been updated, while the virtual disk generated for each machine refers to the previous filesystem.
+This error shows up when the base filesystem shared between all the virtual machines has changed or has been updated, while the virtual disk generated for each machine refers to the previous filesystem.
 
 This problem can be easily solved by deleting the virtual disks with the `lclean` command inside the laboratory in which the errors arise. But remember that `lclean` removes all the changes that could have been made manually on the operating system of the virtual machine.
 
-### When starting a lab, only one virtual machine starts up, and then shows the following message appears for several minutes. Why is that?
+### When starting a lab, only one virtual machine starts up, and then the following message appears for several minutes. Why is that?
 
     INIT: version 2.88 booting
     [info] Using makefile-style concurrent boot in runlevel S.
@@ -29,7 +29,7 @@ This problem can be easily solved by deleting the virtual disks with the `lclean
 If **all these conditions** are fullfilled:
 
 - The operating system where Netkit-NG runs is a virtualized system,
-- You are using the VirtualBox software for this, and
+- You are using the VirtualBox software to do so, and
 - Your computer has a **CPU without support** for hardware virtualization instructions (Intel VT-x, AMD-V).
 
 Then you will then find that due to the complexity of emulation of the instructions used by Netkit, the performance of the Netkit-NG system is extremely low and it makes the system practically unusable.
@@ -40,13 +40,13 @@ To solve this:
 - If your computer **does not support** hardware-assisted virtualization instructions, we recommend installing a GNU/Linux distribution such as Ubuntu or Debian in Dual-Boot mode and running Netkit-NG in that environment.
 - As an alternative, try installing the operating system on another virtualization engine apart from VirtualBox.
 
-To find out if your computer supports this type of instructions, follow the steps indicated in [this link](https://blogs.msdn.microsoft.com/taylorb/2008/06/19/hyper-v-will-my-computer-run-hyper-v-detecting-intel-vt-and-amd-v/).
+To find out if your computer supports hardware virtualization instructions, follow the steps indicated in [this link](https://blogs.msdn.microsoft.com/taylorb/2008/06/19/hyper-v-will-my-computer-run-hyper-v-detecting-intel-vt-and-amd-v/).
 
 ### I closed the window of a virtual machine and now I cannot restart the lab. How can I solve it?
 
-As a laboratory involves multiple windows, we may end up closing one by mistake, without having properly stopped the whole lab. In this case, it usually happens that both the process managing the virtual machine(s), and the process that simulates the interconnection device (hub or switch), both keep running wild.
+As a laboratory involves multiple windows, we may end up closing one by mistake, without having properly stopped the whole lab. In this case, it usually happens that the process managing the virtual machine(s), and the process that simulates the interconnection device (hub or switch), both keep running wild.
 
-To solve this, execute the following instructions in the order given, waiting a few seconds between each command:
+To solve this, execute the following instructions in the given order, waiting a few seconds between each command:
 
     lhalt
     pkill netkit-kernel
@@ -57,9 +57,9 @@ The `lhalt` command first tries to stop the current lab in an "adequate" way. Th
 
 ### Is it possible to run commands automatically when starting a virtual machine?
 
-Yes, it is. Inside each laboratory there is a file with the same name as the virtual machine, with extension `.startup`. For example, in the webserver laboratory there are `client.startup` and `server.startup`, both of which contain the commands that are executed after starting the client and server machines, respectively.
+Yes, it is. Inside each laboratory there is a file with the same name as the virtual machine, with a `.startup` extension. For example, in the webserver laboratory there are `client.startup` and `server.startup`, both of which contain the commands that are executed after starting the client and server machines, respectively.
 
-Just add the lines that you want to execute at the end of the file corresponding to the virtual machine that you're interested in and those commands will be executed after that VM has started. Remember to keep an eye on the syntax of each command, as any error will render those commands inneffective.
+Just add the lines that you want to execute at the end of the file whose name matches the virtual machine that you're interested in, and those commands will be executed after that VM has started. Remember to pay attention to the syntax of each command, as any error will render those commands inneffective.
 
 ### Is it possible to access the host files from a virtual machine? How?
 
@@ -69,7 +69,7 @@ In the event that a laboratory has been started (with lstart), the `/hostlab` di
 
 ### Can I capture traffic inside a virtual machine?
 
-While the recommendation is to use `vdump` to capture traffic between hosts, nothing prevents us from capturing traffic inside a machine virtual. To do so, use the `tshark` or `tcpdump` commands with the suitable parameters. For example:
+While the recommendation is to use `vdump` to capture traffic between hosts, nothing prevents us from capturing traffic inside a virtual machine. To do so, use the `tshark` or `tcpdump` commands with the suitable parameters. For example:
 
     # to capture all the traffic and save it to a file
     tcpdump -i eth0 -w capture.pcap

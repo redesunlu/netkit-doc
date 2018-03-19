@@ -22,7 +22,7 @@ If you followed the installation steps, at the end of it you'll find a prompt li
         cd /home/<username>/netkit/netkit-lab_webserver
         lstart
 
-Run a test by performing these steps. That should start 2 terminals as seen in the following image:
+Run those commands to test the Netkit environment. Two terminal windows should start up. They'll look like the following image:
 
 ![Netkit installation test](img/test-instalacion.png)
 
@@ -30,13 +30,13 @@ Terminals have names, which we will refer later in the explanations. In this lab
 
 ## The test ran OK, but I didn't understand what I did
 
-You set up a Netkit lab. For now, in the "original" terminal (where you copypasted `lstart`), now copy, paste and run the `lhalt` command. The 2 terminals should close (both ***client*** and ***server***).
+You set up a Netkit lab. Now, at the "original" terminal (where you copypasted `lstart`), copy, paste and run the `lhalt` command. The two terminals should close (both ***client*** and ***server***).
 
 We will take a look at the laboratories later. For the time being, continue reading this guide.
 
 ## The test did not work in my machine
 
-Many things may have failed. Most likely, you could not see the terminal windows starting up and the `lstart` command ended with a strange error. It could also be that you did saw the terminal windows but they closed very fast.
+Several things may have failed. Most likely, you could not see the terminal windows starting up and the `lstart` command ended with a strange error. It could also be that you did saw the terminal windows but they shut down quickly.
 
 There are 2 possible pathways:
 
@@ -60,13 +60,13 @@ A laboratory connects all VMs with some logical topology depending on the purpos
 
 * `vstart myvm`: Start a VM named ***myvm***.
 * `vlist`: Lists the VMs that are currently running.
-* `vhalt myvm`: Turn off the ***myvm** VM.
+* `vhalt myvm`: Turn off the ***myvm*** VM.
 
 ## Which Netkit labs are installed?
 
 When Netkit was installed, several laboratories were installed as well:
 
-    $ ls -l ~ / netkit /
+    $ ls -l ~/netkit/
     total 36
     drwxrwxr-x  2 tomas tomas 4096 mar 21 18:29 bundles
     drwxrwxr-x  2 tomas tomas 4096 mar 21 18:17 labs
@@ -78,36 +78,36 @@ When Netkit was installed, several laboratories were installed as well:
     drwxr-xr-x  4 tomas tomas 4096 mar 22 16:19 netkit-lab_webserver
     drwxr-xr-x  7 tomas tomas 4096 mar 22 16:19 netkit-ng
 
-All the directories prefixed with `netkit-lab_` are laboratories, ready to be used. When the install process finished, the installer suggested the use of a lab, and after issuing a command, 2 VMs were automatically started.
+All directories prefixed with `netkit-lab_` are ready to be used labs. When the install process finished, the installer suggested the use of a lab, and after executing a command, two VMs were automatically started.
 
-A laboratory can initiate many VMs, the only limit is the hardware resources of the equipment that executes Netkit.
+A laboratory can initiate many VMs, the only limit being the hardware resources of the equipment that executes Netkit.
 
-## How can I start using a Netkit lab?
+## How can I start using a Netkit laboratory?
 
 When a project or lecture requires the use of a laboratory, you should do the following:
 
 * Go to the lab directory. For example, for the ***ARP*** lab, go to `~/netkit/netkit-lab_arp`
 
-    $ cd ~/netkit/netkit-lab_arp
+        $ cd ~/netkit/netkit-lab_arp
 
 * Start the lab with the `lstart` command.
 
-    $ lstart
+        $ lstart
 
 * Take a look at the started VMs started
 
-    $ vlist
+        $ vlist
 
 * Close the laboratory
 
-    $ lhalt
+        $ lhalt
 
-## How can I capture the traffic of a laboratory?
+## How can I capture the network traffic in a laboratory?
 
 There are several ways to do this:
 
 * VMs have `tshark` installed, so you can always capture packets from any of them.
-* Netkit offers a way to capture the traffic of a running laboratory. But to understand how to do it we need to know some details first.
+* Netkit offers a way to capture the traffic of a running laboratory by "sniffing" the network link. But to understand how to do it we need to know some details first.
 
 ### Output of the vlist command
 
@@ -142,7 +142,7 @@ A, B and C are the available networks.
 
 You can type the `vdump` command and redirected the output to a file. Following the previous example:
 
-    $ vdump C> capture.pcap
+    $ vdump C > capture.pcap
     Running ==> uml_dump C
 
 You'll capture all traffic running on the C network (pc2, pc3 and r2), and store it in the `capture.pcap` file.
@@ -153,17 +153,17 @@ When you no longer need to keep grabbing packets, simply press `Ctrl+C` on the w
 
 ### How can I analyze the capture file?
 
-The traffic dump is stored in a format called _pcap_. It can be easily analized with tools such as `tshark` or `wireshark`.
+The traffic dump is stored in a format called _pcap_. It can be easily analyzed with tools such as `tshark` or `wireshark`.
 
 ## How can I shut down a laboratory?
 
-In our experience, closing terminals one by one can be problematic. We recommend to use the `lhalt` command on the same console where `lstart` was launched.
+In our experience, closing terminals one by one can be problematic. We recommend to use the `lhalt` command at the same terminal where `lstart` was launched.
 
 Be careful. You have to "be standing" at the right lab folder.
 
 ## TL;DR
 
-If you already read all the above, here we give you a quick reference of all the previous commands:
+If you already read all the above, here you have a quick reference of all the previous commands:
 
 VMs management:
 
@@ -176,7 +176,7 @@ Lab management:
     # Go to the laboratory folder
     # If you installed with our installer, they are in ~/netkit/netkit-lab_<subject>
     # where <subject> can be: dns, arp, webserver, ....
-    $ lstart   # starts all the vms of a labo
+    $ lstart   # starts all vms on a lab
     $ lhalt    # closes all vms
 
 Capturing packets:

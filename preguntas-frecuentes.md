@@ -128,6 +128,42 @@ parámetros adecuados. Por ejemplo:
     # para guardar sólo el tráfico de dns directamente en el host, dentro del home del usuario
     tcpdump -i eth0 -t -q port domain -w /hosthome/captura_dns.cap
 
+### Intenté realizar una captura con el comando `tshark` dentro de un host, pero encuentro alguno de los siguientes errores. ¿Qué puede estar sucediendo?
+
+    ...
+    Unhandled exception (group=1, code=7)
+    Aborted
+
+o bien
+
+    Out of memory: Kill process 1604 (tshark) score 625 or sacrifice child
+    Killed process 1604 (tshark) total-vm:68236kB, anon-rss:19536kB, file-rss:4kB
+    Killed
+
+A diferencia de `tcpdump`, el analizador `tshark` incorpora
+[disectores](https://www.wireshark.org/docs/wsdg_html_chunked/ChapterDissection.html) para una gran variedad de protocolos de red, por lo que requiere disponer de una
+buena cantidad de memoria RAM en la máquina virtual donde se realiza la captura.
+
+Dado que habitualmente los laboratorios se proveen con la configuración por
+defecto, la configuración de 32 MB asignados para cada máquina virtual es
+insuficiente e impide a `tshark` iniciar correctamente.
+
+Esto se resuelve incrementando la cantidad de memoria disponible para las VMs
+en el archivo de configuración del laboratorio `lab.conf`, añadiendo (o
+reemplazando, si ya existiese) una línea como la siguiente, donde _maquina_
+es el nombre del host o VM a modificar:
+
+    maquina[mem]=128
+
+Por ejemplo, para asignar 128 MB al _cliente_ del laboratorio _webserver_, la
+línea en el archivo `webserver/lab.conf` quedaría así:
+
+    client[mem]=128
+
+Empíricamente hemos observado que asignando 128 MB a cada máquina virtual (o al
+menos a aquella donde se realiza la captura), `tshark` se inicia y puede operar
+correctamente, pero [YMMV](http://quesignificado.com/ymmv/).
+
 ### ¿Es posible ejecutar una máquina virtual sin iniciar una nueva ventana de terminal?
 
 Sí. Es posible redirigir la salida de la terminal a la consola actual,

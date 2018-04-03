@@ -83,6 +83,42 @@ While the recommendation is to use `vdump` to capture traffic between hosts, not
     # to save only the dns traffic directly on the host, inside the user's home directory
     tcpdump -i eth0 -t -q port domain -w /hosthome/captura_dns.cap
 
+### I tried to capture traffic with `tshark` inside a host, but it fails with one of the following errors. What may be happening?
+
+    ...
+    Unhandled exception (group=1, code=7)
+    Aborted
+
+or
+
+    Out of memory: Kill process 1604 (tshark) score 625 or sacrifice child
+    Killed process 1604 (tshark) total-vm:68236kB, anon-rss:19536kB, file-rss:4kB
+    Killed
+
+Unlike `tcpdump`, the `tshark` analyzer uses
+[dissectors](https://www.wireshark.org/docs/wsdg_html_chunked/ChapterDissection.html)
+to examine a wide variety of network protocols, so you need to have a good
+amount of RAM on the virtual machine where the capture is being performed.
+
+Since laboratories are usually provided with a minimal configuration,
+the 32 MB of RAM assigned to each virtual machine are not enough for it and
+prevent `tshark` from working correctly.
+
+This can be solved by increasing the memory limit of the VMs in the lab
+configuration file `lab.conf`, by adding (or replacing, if it already existed)
+a line like the following, where _machine_ is the name of the host or VM to modify:
+
+    machine[mem] = 128
+
+For example, to set apart 128 MB for the _client_ in the _webserver_ lab, the
+line in the `webserver/lab.conf` file would look like this:
+
+    client[mem] = 128
+
+We have empirically observed that allocating 128 MB for each virtual machine
+(or at least for the one with the capture role), `tshark` starts and can
+operate successfully, but YMMV.
+
 ### Is it possible to run a virtual machine without starting a new terminal window?
 
 Yes, it is. You can redirect the output from the VM to the current terminal, adding the `--con0=this` argument to the `vstart` command. Keep in mind that, from now, any command you type in the current window will run on the virtual machine. For example

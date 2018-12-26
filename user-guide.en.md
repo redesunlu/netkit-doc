@@ -106,7 +106,7 @@ When a project or lecture requires the use of a laboratory, you should do the fo
 
 There are several ways to do this:
 
-* VMs have `tshark` installed, so you can always capture packets from any of them.
+* VMs have `tcpdump` and `tshark` installed, so you can always capture packets from any of them.
 * Netkit offers a way to capture the traffic of a running laboratory by "sniffing" the network link. But to understand how to do it we need to know some details first.
 
 ### Output of the vlist command

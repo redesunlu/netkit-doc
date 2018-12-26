@@ -170,6 +170,14 @@ fix_netkit_terminal () {
     sed -i 's/KERNELCMD="xterm -e /KERNELCMD="xterm -fa Monospace -fs 10 -fg gray -e /' $NETKIT_DIR/netkit-ng/bin/vstart
 }
 
+upgrade_vm_defaults () {
+    if test `awk '/MemTotal/ {print $2}' /proc/meminfo` -ge 1048576; then
+      # if bare metal has 1 GB or more, increase default memory for VMs
+      # this fixes tshark Unhandled exception SIGABRT / OOM (it requires at least 48 MB)
+      sed -i "s/\: \${VM_MEMORY\:=32}/: \${VM_MEMORY:=96}/" $NETKIT_DIR/netkit-ng/bin/script_utils
+    fi
+}
+
 define_environment_vars () {
     # add relevant lines to bashrc
     grep -qF NETKIT_HOME ~/.bashrc || echo "export NETKIT_HOME=$NETKIT_DIR/netkit-ng" >> ~/.bashrc
@@ -222,6 +230,7 @@ verify_required_packages
 validate_32bits_execution
 uncompress_everything
 fix_netkit_terminal
+upgrade_vm_defaults
 define_environment_vars
 
 cd $NETKIT_DIR/netkit-ng

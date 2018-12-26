@@ -110,7 +110,7 @@ Cuando en un TP o en clase se indique que se inicie un laboratorio, los pasos a 
 
 Existen diversas maneras de hacer esto:
 
- * Las VMs cuentan con tshark instalado, entonces siempre se puede capturar desde alguna de las mismas.
+ * Las VMs cuentan con `tcpdump` y `tshark` instalado, entonces siempre se puede capturar desde alguna de las mismas.
  * Netkit ofrece una forma de capturar el tráfico de un laboratorio en ejecución. Pero para entender esto necesitamos primero ver algunos detalles mas.
 
 ## Salida del comando vlist

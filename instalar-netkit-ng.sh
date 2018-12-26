@@ -183,6 +183,7 @@ upgrade_vm_defaults () {
       # if bare metal has 1 GB or more, increase default memory for VMs
       # this fixes tshark Unhandled exception SIGABRT / OOM (it requires at least 48 MB)
       sed -i "s/\: \${VM_MEMORY\:=32}/: \${VM_MEMORY:=96}/" $NETKIT_DIR/netkit-ng/bin/script_utils
+      sed -i 's/VM_MEMORY=32/VM_MEMORY=96/' $NETKIT_DIR/netkit-ng/netkit.conf
     fi
 }
 

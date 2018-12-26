@@ -92,11 +92,19 @@ download_labs () {
     done
     # fetch labs from the netkit basic-topics package
     for LAB in $LABS_BASIC; do
-        wget -q -P labs -c $NETKIT_LABS/netkit-labs_basic-topics/$LAB/$LAB.tar.gz
+        if ! wget -q -P labs -c $NETKIT_LABS/netkit-labs_basic-topics/$LAB/$LAB.tar.gz; then
+            echo "ERROR: No es posible descargar los archivos desde el repositorio $NETKIT_LABS"
+            echo
+            exit 1
+        fi
     done
     # fetch labs from the netkit application-level package
     for LAB in $LABS_APPL; do
-        wget -q -P labs -c $NETKIT_LABS/netkit-labs_application-level/$LAB/$LAB.tar.gz
+        if ! wget -q -P labs -c $NETKIT_LABS/netkit-labs_application-level/$LAB/$LAB.tar.gz; then
+            echo "ERROR: No es posible descargar los archivos desde el repositorio $NETKIT_LABS"
+            echo
+            exit 1
+        fi
     done
 }
 

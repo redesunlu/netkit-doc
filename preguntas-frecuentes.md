@@ -109,6 +109,17 @@ del usuario que lanzó el proceso (con vstart o lstart).
 En el caso de que se haya iniciado un laboratorio (con lstart), también está disponible dentro de 
 la máquina virtual el directorio `/hostlab` para acceder al contenido del laboratorio en el host.
 
+### ¿Puedo extraer archivos que están en la máquina virtual y copiarlos al host?
+
+Sí. Los directorios `/hosthome` y `/hostlab` se comparten entre host y máquina
+virtual, por lo que todo archivo que se coloque allí pasará a estar en el host.
+Basta con ejecutar
+
+    cp ARCHIVO /hostlab/
+
+para que el archivo indicado esté disponible en el host, dentro del directorio
+del laboratorio.
+
 ### ¿Puedo realizar una captura de tráfico dentro de una máquina virtual?
 
 Si bien la recomendación es utilizar `vdump` para capturar el tráfico desde

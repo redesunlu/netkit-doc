@@ -67,6 +67,14 @@ Yes, it is. Netkit automatically generates a `/hosthome` directory inside the vi
 
 In the event that a laboratory has been started (with lstart), the `/hostlab` directory is also available within the virtual machine, allowing to access the contents of the host's lab directory on the guest.
 
+### Can I extract files that are in the virtual machine and copy them to the host?
+
+Yes. The `/hosthome` and`/hostlab` directories are shared between host and virtual machine, so any file placed there will also be on the host. Just execute
+
+    cp FILENAME /hostlab/
+
+and that file will be available on the host, inside the current laboratory directory.
+
 ### Can I capture traffic inside a virtual machine?
 
 While the recommendation is to use `vdump` to capture traffic between hosts, nothing prevents us from capturing traffic inside a virtual machine. To do so, use the `tshark` or `tcpdump` commands with the suitable parameters. For example:

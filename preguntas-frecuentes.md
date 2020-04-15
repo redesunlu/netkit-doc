@@ -187,6 +187,19 @@ ejecutarán sobre la máquina virtual. Por ejemplo
 Para detener la máquina virtual, ejecute el comando `poweroff` dentro de
 la misma terminal. Asegúrese, por supuesto, de no ejecutarlo sobre el host!
 
+### ¿Es posible configurar la aplicación de terminal para que no se ejecute xterm por defecto?
+
+Si. Para esto, hay que editar el archivo netkit.conf que el script de instalación ubica 
+por defecto en `~/netkit/netkit-ng/netkit.conf` y modificar la setting:
+
+    TERM_TYPE=xterm
+
+por
+
+    TERM_TYPE=gnome
+
+en el caso de querer utilizar la terminal del entorno Gnome o 'konsole' en el caso de KDE.
+
 ---
 
 * Mauro A. Meloni \<maurom at dominio de la unlu\>

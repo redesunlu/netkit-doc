@@ -200,6 +200,13 @@ por
 
 en el caso de querer utilizar la terminal del entorno Gnome o 'konsole' en el caso de KDE.
 
+A partir de ese momento, todos los lstart/vstart que ejecutemos van a correr con la terminal
+global que se definió, con el detalle de que (al menos en Gnome) si ya tenemos una terminal
+abierta (mismo para ejecutar el `lstart/vstart`) las máquinas virtuales se visualizarán en
+pestañas nuevas de la terminal, no en una ventana nueva como con xterm. 
+
+Igual, YMMV: este comportamiento se observó en Ubuntu 18.04.
+
 ---
 
 * Mauro A. Meloni \<maurom at dominio de la unlu\>

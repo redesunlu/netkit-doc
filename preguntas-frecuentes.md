@@ -198,7 +198,7 @@ por
 
     TERM_TYPE=gnome
 
-en el caso de querer utilizar la terminal del entorno Gnome o 'konsole' en el caso de KDE.
+en el caso de querer utilizar la terminal del entorno Gnome o `konsole` en el caso de KDE.
 
 A partir de ese momento, todos los lstart/vstart que ejecutemos van a correr con la terminal
 global que se definió, con el detalle de que (al menos en Gnome) si ya tenemos una terminal

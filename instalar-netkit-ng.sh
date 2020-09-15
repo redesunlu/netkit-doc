@@ -3,16 +3,13 @@
 set -e
 
 NETKIT_REPO=http://www.unlu.edu.ar/~tyr/netkit
-NETKIT_LABS=http://wiki.netkit.org/netkit-labs
 NETKIT_CORE=netkit-ng-core-32-3.0.4-TYR.tar.bz2
 NETKIT_FS=netkit-ng-filesystem-i386-F7.0-0.1.4-TYR.tar.bz2
 NETKIT_KERNEL=netkit-ng-kernel-i386-K3.2-0.1.4-TYR.tar.bz2
 NETKIT_DIR=~/netkit
 LABS_GITHUB_REPO=https://raw.githubusercontent.com/redesunlu/netkit-labs
-LABS_GITHUB="netkit-lab_quagga-TYR netkit-lab_rip-TYR netkit-lab_dns-TYR netkit-lab_email netkit-lab_proxy-TYR netkit-lab_snmpv2"
+LABS_GITHUB="netkit-lab_quagga-TYR netkit-lab_rip-TYR netkit-lab_dns-TYR netkit-lab_email netkit-lab_proxy-TYR netkit-lab_snmpv2 netkit-lab_arp netkit-lab_webserver netkit-lab_nat"
 LABS_UNLU=""
-LABS_BASIC="netkit-lab_arp"
-LABS_APPL="netkit-lab_webserver netkit-lab_nat"
 REQUIRED_PACKAGES="bzip2 ca-certificates lsof uml-utilities xterm gnome-terminal wireshark tshark tcpdump"
 
 # verify if we have wget
@@ -90,22 +87,6 @@ download_labs () {
     for LAB in $LABS_UNLU; do
         wget -q -P labs -c $NETKIT_REPO/$LAB.tar.gz
     done
-    # fetch labs from the netkit basic-topics package
-    for LAB in $LABS_BASIC; do
-        if ! wget -q -P labs -c $NETKIT_LABS/netkit-labs_basic-topics/$LAB/$LAB.tar.gz; then
-            echo "ERROR: No es posible descargar los archivos desde el repositorio $NETKIT_LABS"
-            echo
-            exit 1
-        fi
-    done
-    # fetch labs from the netkit application-level package
-    for LAB in $LABS_APPL; do
-        if ! wget -q -P labs -c $NETKIT_LABS/netkit-labs_application-level/$LAB/$LAB.tar.gz; then
-            echo "ERROR: No es posible descargar los archivos desde el repositorio $NETKIT_LABS"
-            echo
-            exit 1
-        fi
-    done
 }
 
 verify_netkit_integrity () {
@@ -163,7 +144,7 @@ uncompress_everything () {
         tar xSf bundles/$NETKIT_KERNEL --checkpoint=.2000
     echo
     echo "» Descomprimiendo los laboratorios ..."
-    for LAB in $LABS_GITHUB $LABS_UNLU $LABS_BASIC $LABS_APPL; do
+    for LAB in $LABS_GITHUB $LABS_UNLU; do
         tar xSf labs/$LAB.tar.gz
     done
     echo

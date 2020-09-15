@@ -10,7 +10,7 @@ Netkit es una herramienta. Netkit permite crear maquinas virtuales. Estas VMs em
 
 # ¿Cómo se instala?
 
-Si bien existe una [pagina oficial del proyecto](http://wiki.netkit.org/index.php/Download_Official), la asignatura ofrece un [script](https://github.com/redesunlu/netkit-doc) que realiza todos los pasos de instalación. Para el uso en esta asignatura, **recomendamos** el uso del mismo.
+La asignatura ofrece un [script](https://github.com/redesunlu/netkit-doc) que realiza todos los pasos de instalación. Para el uso en esta asignatura, **recomendamos** el uso del mismo.
 
 # Ya instalé netkit con el script ¿Ahora que hago?
 

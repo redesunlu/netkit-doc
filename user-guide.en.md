@@ -10,7 +10,7 @@ Netkit is a tool. Netkit allows you to create virtual machines. These VMs emulat
 
 ## How can I install it?
 
-Although there is an [official page of the project](http://wiki.netkit.org/index.php/Download_Official), this course offers a [script](https://github.com/redesunlu/netkit-doc) that performs all the installation steps. At the Teleinformática y Redes course, we **recommend** to use this installer.
+This course offers a [script](https://github.com/redesunlu/netkit-doc) that performs all the installation steps. At the Teleinformática y Redes course, we **recommend** to use this installer.
 
 ## I have installed netkit using the script. What should I do now?
 

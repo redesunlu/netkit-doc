@@ -1,6 +1,6 @@
 # Networking exercises
 
-This repository contains scripts, documentation and tips for using [Netkit](http://wiki.netkit.org/index.php/Main_Page) in laboratory exercises at the [Teleinformática y Redes](http://www.labredes.unlu.edu.ar/tyr) course at Universidad Nacional de Luján, Argentina
+This repository contains scripts, documentation and tips for using [Netkit](http://www.netkit.org/) in laboratory exercises at the [Teleinformática y Redes](http://www.labredes.unlu.edu.ar/tyr) course at Universidad Nacional de Luján, Argentina
 
 Este documento también está disponible en [Español](README.md).
 

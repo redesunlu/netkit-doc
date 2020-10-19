@@ -10,7 +10,7 @@ NETKIT_DIR=~/netkit
 LABS_GITHUB_REPO=https://raw.githubusercontent.com/redesunlu/netkit-labs
 LABS_GITHUB="netkit-lab_quagga-TYR netkit-lab_rip-TYR netkit-lab_dns-TYR netkit-lab_email netkit-lab_proxy-TYR netkit-lab_snmpv2 netkit-lab_arp netkit-lab_webserver netkit-lab_nat"
 LABS_UNLU=""
-REQUIRED_PACKAGES="bzip2 ca-certificates lsof uml-utilities xterm gnome-terminal wireshark tshark tcpdump"
+REQUIRED_PACKAGES="bzip2 ca-certificates lsof uml-utilities xterm gnome-terminal wireshark tshark tcpdump make"
 
 # verify if we have wget
 test -x /usr/bin/wget || run_as_root apt-get install wget

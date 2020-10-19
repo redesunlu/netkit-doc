@@ -65,6 +65,30 @@ situación:
 Para averiguar si su equipo soporta este tipo de instrucciones, siga los pasos
 indicados en [este enlace](https://blogs.technet.microsoft.com/davidcervigon/2007/04/26/soporta-mi-procesador-la-virtualizacin-asistida-por-hardware/).
 
+### Al iniciar el laboratorio, se muestra el siguiente mensaje y no se inician las máquinas virtuales ¿Qué puede estar sucediendo?
+
+    You choose to use parallel startup.
+    /home/usuario/netkit/netkit-ng/bin/lstart: 371: /home/usua
+    rio/netkit/bin/lstart: make: not found
+
+    The lab has been started
+
+Es probable que ese laboratorio particular esté configurado para iniciar
+las las máquinas virtuales de forma paralela. Esto requiere que esté
+instalado el comando "make" en Linux, que sin embargo no figuraba como
+dependencia de Netkit.
+
+Hay tres alternativas para resolverlo:
+
+- Instalar el comando make ejecutando `apt-get install make` como
+  usuario root o bien utilizando sudo.
+
+- Ejecutar el laboratorio mediante el comando `lstart -s` o bien con  
+  `lstart --sequential` de manera que sea innecesario el uso de "make".
+
+- Eliminar el archivo `lab.dep` que figura en el laboratorio para que
+  las máquinas virtuales inicien en forma secuencial.
+
 ### Cerré la ventana de una máquina virtual y ahora no puedo volver a iniciar el laboratorio. ¿Cómo puedo resolverlo?
 
 Habitualmente, dado que un laboratorio involucra múltiples ventanas,

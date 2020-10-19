@@ -42,6 +42,30 @@ To solve this:
 
 To find out if your computer supports hardware virtualization instructions, follow the steps indicated in [this link](https://blogs.msdn.microsoft.com/taylorb/2008/06/19/hyper-v-will-my-computer-run-hyper-v-detecting-intel-vt-and-amd-v/).
 
+### When starting a lab, the following message is shown and nothing else happens. What may be happening?
+
+    You choose to use parallel startup.
+    /home/usuario/netkit/netkit-ng/bin/lstart: 371: /home/usua
+    rio/netkit/bin/lstart: make: not found
+
+    The lab has been started
+
+There is a high chance that the current laboratory settings specify
+a parallel startup of virtual machines. This startup method requires
+that the "make" command is available on Linux, but "make" is not
+currently listed as a Netkit dependency.
+
+There are three ways to solve this:
+
+- Install the make command by running `apt-get install make` as
+  root user or using sudo.
+
+- Specify the `-s` argument when running lstart, like `lstart -s` or  
+  `lstart --sequential` so that the make command is made optional.
+
+- Remove the `lab.dep` file that is listed on the laboratory directory
+  so the VMs are sequentially started.
+
 ### I closed the window of a virtual machine and now I cannot restart the lab. How can I solve it?
 
 As a laboratory involves multiple windows, we may end up closing one by mistake, without having properly stopped the whole lab. In this case, it usually happens that the process managing the virtual machine(s), and the process that simulates the interconnection device (hub or switch), both keep running wild.

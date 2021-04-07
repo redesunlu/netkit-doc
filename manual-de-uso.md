@@ -42,7 +42,7 @@ Varias cosas pueden haber fallado. Lo mas probable es que no hayas visto las con
 
 2 caminos a tomar:
 
- * Si sos valiente y querés aprender un poco más, revisá [esta página](http://wiki.netkit.org/index.php/FAQ) con problemas y soluciones de Netkit. En particular, las preguntas dentro de ***Troubleshooting*** pueden ayudar un poco.
+ * Si sos valiente y querés aprender un poco más, revisá las [Preguntas Frecuentes](preguntas-frecuentes.md) pues allí registramos algunos problemas que suelen suceder, con sus posibles soluciones.
  * Si la línea de comandos no es lo tuyo, hacé lo siguiente: ejecutá el comando `lstart -v`. La salida de ese comando pegala en un archivo de texto y llamá a alguno de los docentes. Si no estas en la clase, adjuntá el archivo a un correo contándonos todo el detalle que te parezca relevante.
 
 # Entonces ya esta instalado Netkit. ¿Cómo se usa?

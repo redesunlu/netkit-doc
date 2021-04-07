@@ -40,7 +40,7 @@ Several things may have failed. Most likely, you could not see the terminal wind
 
 There are 2 possible pathways:
 
-* If you are brave and want to learn a little more, check [our FAQ](faq.en.md) and [this page](http://wiki.netkit.org/index.php/FAQ) with Netkit problems and solutions. In particular, the answers within ***Troubleshooting*** can be helpful.
+* If you are brave and want to learn a little more, check [our FAQ](faq.en.md) as your problem may have been noted there and probably there is even a quick solution.
 * If the command line is not your thing, do the following. Run the `lstart -v` command. Paste the output of that command into a text file and ask for one of the assistants. If you are not currently at the classroom, attach the file to an email telling us all the details that you think are relevant.
 
 ## So Netkit is now installed. How can I use it?

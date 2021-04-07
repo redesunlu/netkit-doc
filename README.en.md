@@ -42,8 +42,6 @@ If it were necessary to re-do the installation, the script can be executed witho
 
 Just remove all directories inside `~/netkit/` except for the so-called `bundles`.
 
-    rm -rf ~/netkit/labs ~/netkit/netkit*
-
 ## Uninstall
 
 Just remove the `~/netkit` folder and remove from `~/.bashrc` lines similar to the following:

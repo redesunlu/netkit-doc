@@ -47,11 +47,7 @@ Leer toda la salida del comando que va mostrando información de estado, y los p
 
 Si fuera necesario comenzar la instalación de nuevo, el script puede ejecutarse sin tener que descargar nuevamente los archivos más "pesados".
 
-Sólo hace falta eliminar todas los directorios de '~/netkit/' salvo el llamado 'bundles'.
-
-```
-rm -rf ~/netkit/labs ~/netkit/netkit*
-```
+Sólo hace falta eliminar todas los directorios de `~/netkit/` salvo el llamado `bundles`.
 
 # Desinstalar
 
